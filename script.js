@@ -1,25 +1,13 @@
-const menu = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.site-nav');
-menu.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  menu.setAttribute('aria-expanded', String(open));
-});
-nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-  nav.classList.remove('open');
-  menu.setAttribute('aria-expanded', 'false');
-}));
 const elements = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    for (const entry of entries) if (entry.isIntersecting) {entry.target.classList.add('visible'); observer.unobserve(entry.target);}
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
   elements.forEach(el => observer.observe(el));
-} else {
-  elements.forEach(el => el.classList.add('visible'));
-}
+} else elements.forEach(el => el.classList.add('visible'));
 document.querySelector('#year').textContent = new Date().getFullYear();
+// Close the accessible Bootstrap navigation after selecting a section.
+document.querySelectorAll('#site-nav .nav-link').forEach(link => link.addEventListener('click', () => {
+  const el = document.getElementById('site-nav');
+  if (el.classList.contains('show') && window.bootstrap) bootstrap.Collapse.getOrCreateInstance(el).hide();
+}));

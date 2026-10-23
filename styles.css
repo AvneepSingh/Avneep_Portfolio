@@ -328,314 +328,116 @@ h3 {
    INTERACTIVE 3D PORTRAIT
    ================================================== */
 
-/*
-  Starts as a circle.
-
-  On hover:
-  - expands into a 2:3-style portrait
-  - turns into a rounded rectangle
-  - floats upward
-  - tilts in 3D
-  - reveals decorative sparkles
-
-  On touch devices:
-  - tap to expand or collapse
-*/
-
+/* Reserve room for the expanded portrait so nearby content stays still. */
 .portrait-column {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-
-  perspective: 1200px;
   isolation: isolate;
   overflow: visible;
 }
 
 .portrait-stage {
-  width: min(100%, 380px);
-  min-height: 430px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  width: min(100%, 390px);
+  height: 550px;
+  display: grid;
+  place-items: center;
   perspective: 1200px;
   overflow: visible;
 }
 
 .portrait-halo {
+  --photo-height: 272px;
+  --photo-width: calc(var(--photo-height) * 2048 / 1365);
+  --tilt-x: 4deg;
+  --tilt-y: -6deg;
   position: relative;
-
-  width: min(100%, 310px);
-  aspect-ratio: 1;
-
-  display: grid;
-  place-items: center;
-
+  width: calc(var(--photo-height) + 38px);
+  height: calc(var(--photo-height) + 38px);
   border-radius: 50%;
-
-  background: linear-gradient(
-    145deg,
-    #efe5da,
-    #faf6f0 55%,
-    #e5d4c5
-  );
-
-  box-shadow:
-    0 20px 55px rgba(90, 68, 47, .10);
-
+  background: linear-gradient(145deg, #efe5da, #faf6f0 55%, #e5d4c5);
+  box-shadow: 0 20px 55px #5a442f1a;
   transform-style: preserve-3d;
-  transform-origin: center center;
-
   cursor: pointer;
-
-  transition:
-    width 850ms var(--ease-smooth),
-    aspect-ratio 850ms var(--ease-smooth),
-    border-radius 850ms var(--ease-smooth),
-    transform 850ms var(--ease-smooth),
-    box-shadow 850ms ease,
-    background 850ms ease;
+  transition: width .75s cubic-bezier(.22, 1.15, .36, 1),
+    height .75s cubic-bezier(.22, 1.15, .36, 1),
+    border-radius .75s ease, transform .3s ease-out, box-shadow .7s ease;
 }
 
-/* Inner image frame */
+.portrait-halo:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 8px;
+}
 
 .portrait-circle {
-  width: 88%;
-  height: 88%;
-
-  border-radius: 50%;
+  position: absolute;
+  inset: 12px;
+  border: 7px solid #ffffffd9;
+  border-radius: inherit;
   overflow: hidden;
-  position: relative;
-
-  border: 7px solid rgba(255,255,255,.85);
   background: #e6d7c5;
-
-  transform: translateZ(10px);
-
-  box-shadow:
-    0 8px 28px rgba(62,43,26,.10);
-
-  transition:
-    width 850ms var(--ease-smooth),
-    height 850ms var(--ease-smooth),
-    border-radius 850ms var(--ease-smooth),
-    transform 850ms var(--ease-smooth),
-    box-shadow 850ms ease;
+  transform: translateZ(12px);
+  box-shadow: 0 8px 28px #3e2b1a1a;
+  transition: border-radius .75s ease, transform .75s var(--ease-smooth);
 }
 
+/* Keep the actual photo stationary; only its surrounding crop opens. */
 .portrait-circle img {
   display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: 50% 29%;
-
-  transition:
-    transform 950ms var(--ease-smooth),
-    object-position 850ms ease;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--photo-width);
+  height: var(--photo-height);
+  max-width: none;
+  transform: translate(-50%, -50%);
 }
-
-/* Delicate light overlay */
 
 .portrait-circle::after {
   content: "";
-
   position: absolute;
   inset: 0;
-
   pointer-events: none;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,.16),
-    transparent 45%,
-    rgba(70,45,20,.06)
-  );
-
-  opacity: .55;
-
-  transition: opacity 700ms ease;
+  background: radial-gradient(circle at var(--glow-x, 30%) var(--glow-y, 20%), #ffffff40, transparent 60%);
 }
 
-/* Expanded shape */
-
 .portrait-halo.is-expanded {
-  width: min(100%, 320px);
-  aspect-ratio: 2 / 3;
-
-  border-radius: 34px;
-
-  transform:
-    translateY(-8px)
-    rotateY(-6deg)
-    rotateX(4deg);
-
-  box-shadow:
-    0 35px 80px rgba(80,56,36,.18),
-    0 8px 25px rgba(80,56,36,.08);
+  width: calc(var(--photo-width) + 38px);
+  border-radius: 32px;
+  transform: translateY(-10px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  box-shadow: 12px 38px 65px #5038242b, 0 8px 25px #50382414;
 }
 
 .portrait-halo.is-expanded .portrait-circle {
-  width: 92%;
-  height: 94%;
-
-  border-radius: 26px;
-
-  transform:
-    translateZ(32px)
-    rotateZ(1deg);
-
-  box-shadow:
-    0 18px 35px rgba(54,35,20,.14);
+  border-radius: 23px;
+  transform: translateZ(12px);
 }
-
-.portrait-halo.is-expanded img {
-  transform: scale(1.02);
-  object-position: 50% 35%;
-}
-
-.portrait-halo.is-expanded
-.portrait-circle::after {
-  opacity: .2;
-}
-
-/* Desktop hover */
-
-@media (hover: hover) and (pointer: fine) {
-
-  .portrait-halo:hover {
-    width: min(100%, 320px);
-    aspect-ratio: 2 / 3;
-
-    border-radius: 34px;
-
-    transform:
-      translateY(-12px)
-      rotateY(-9deg)
-      rotateX(5deg);
-
-    box-shadow:
-      0 35px 80px rgba(80,56,36,.19),
-      0 8px 25px rgba(80,56,36,.08);
-  }
-
-  .portrait-halo:hover .portrait-circle {
-    width: 92%;
-    height: 94%;
-
-    border-radius: 26px;
-
-    transform:
-      translateZ(38px)
-      rotateZ(1.5deg);
-  }
-
-  .portrait-halo:hover img {
-    transform: scale(1.025);
-    object-position: 50% 35%;
-  }
-
-  .portrait-halo:hover
-  .portrait-circle::after {
-    opacity: .2;
-  }
-}
-
-/* Decorative sparkles */
 
 .portrait-spark {
   position: absolute;
   z-index: 3;
-
-  font-size: 23px;
   color: #baa087;
-
   opacity: 0;
   pointer-events: none;
-
-  transform:
-    translateY(8px)
-    scale(.65);
-
-  transition:
-    opacity 400ms ease,
-    transform 750ms var(--ease-smooth);
+  transform: translateY(10px) scale(.3);
+  transition: opacity .4s ease, transform .7s cubic-bezier(.22, 1.5, .36, 1);
 }
 
-.spark-one {
-  top: 7%;
-  right: -6%;
-}
+.spark-one { top: 7%; right: -5%; font-size: 25px; }
+.spark-two { bottom: 17%; left: -6%; font-size: 32px; transition-delay: .1s; }
+.spark-three { top: 42%; right: -7%; font-size: 16px; transition-delay: .2s; }
 
-.spark-two {
-  bottom: 17%;
-  left: -9%;
-  font-size: 30px;
-}
-
-.spark-three {
-  top: 42%;
-  right: -12%;
-  font-size: 14px;
-}
-
-.portrait-halo.is-expanded .spark-one {
+.portrait-halo.is-expanded .portrait-spark {
   opacity: 1;
-
-  transform:
-    translate(8px, -15px)
-    rotate(20deg)
-    scale(1);
+  transform: translateZ(40px) scale(1);
+  animation: portrait-twinkle 2.4s ease-in-out .75s infinite alternate;
 }
+.portrait-halo.is-expanded .spark-two { animation-delay: 1s; }
+.portrait-halo.is-expanded .spark-three { animation-delay: 1.3s; }
 
-.portrait-halo.is-expanded .spark-two {
-  opacity: 1;
-
-  transform:
-    translate(-10px, 6px)
-    rotate(-15deg)
-    scale(1);
-}
-
-.portrait-halo.is-expanded .spark-three {
-  opacity: .85;
-
-  transform:
-    translate(12px, -5px)
-    rotate(30deg)
-    scale(1);
-}
-
-@media (hover: hover) and (pointer: fine) {
-
-  .portrait-halo:hover .spark-one {
-    opacity: 1;
-    transform:
-      translate(8px, -15px)
-      rotate(20deg)
-      scale(1);
-  }
-
-  .portrait-halo:hover .spark-two {
-    opacity: 1;
-    transform:
-      translate(-10px, 6px)
-      rotate(-15deg)
-      scale(1);
-  }
-
-  .portrait-halo:hover .spark-three {
-    opacity: .85;
-    transform:
-      translate(12px, -5px)
-      rotate(30deg)
-      scale(1);
-  }
+@keyframes portrait-twinkle {
+  from { translate: 0 0; rotate: -10deg; }
+  to { translate: 0 -9px; rotate: 12deg; }
 }
 
 /* Portrait fallback */
@@ -1479,16 +1281,12 @@ h3 {
   }
 
   .portrait-stage {
-    min-height: 410px;
+    height: 460px;
     width: 100%;
   }
 
   .portrait-halo {
-    width: min(75vw, 270px);
-  }
-
-  .portrait-halo.is-expanded {
-    width: min(76vw, 280px);
+    --photo-height: min(54vw, 232px);
   }
 
   .hero-actions,
@@ -1553,3 +1351,46 @@ h3 {
     transform: none !important;
   }
 }
+
+/* Dottie lives in a small corner, with a stationary, accessible click target. */
+.duck-companion { position: fixed; right: max(20px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); z-index: 1050; font-family: 'DM Sans', sans-serif; }
+.duck-playground { position: relative; width: 170px; height: 126px; margin-left: auto; }
+.duck-launcher { position: absolute; inset: 12px 0 0; width: 170px; border: 0; background: transparent; cursor: pointer; padding: 0 20px; border-radius: 30px; }
+.duck-drawing { width: 112px; height: 110px; overflow: visible; animation: duck-stroll 12s ease-in-out infinite; }
+.duck-body { transform-origin: 60px 80px; animation: duck-waddle .7s ease-in-out infinite alternate; }
+.duck-foot-left, .duck-foot-right { transform-box: fill-box; transform-origin: center; animation: duck-step .7s ease-in-out infinite alternate; }
+.duck-foot-right { animation-delay: -.7s; }
+.duck-wing { transform-origin: 40px 67px; animation: duck-wing 6s ease-in-out infinite; }
+.duck-eye { transform-box: fill-box; transform-origin: center; animation: duck-blink 5s infinite; }
+.duck-heart { animation: duck-love 6s ease-in-out infinite; }
+.duck-invite { position: absolute; right: 0; top: -9px; padding: 7px 11px; background: #fffdf6; color: #74634c; border: 1px solid #e9ddc9; border-radius: 14px 14px 3px 14px; font-size: 11px; white-space: nowrap; box-shadow: 0 4px 16px #5038240c; pointer-events: none; }
+.duck-companion.is-chatting .duck-invite { display: none; }
+.duck-launcher:hover .duck-drawing, .is-chatting .duck-drawing { animation-play-state: paused; }
+.duck-launcher:focus-visible, .duck-chat button:focus-visible, .duck-messages:focus-visible { outline: 2px solid #8c7657; outline-offset: 4px; }
+.duck-chat { width: min(360px, calc(100vw - 32px)); background: #fffdf9; border: 1px solid #e6dccd; border-radius: 23px; box-shadow: 0 16px 65px #50382426; overflow: hidden; animation: duck-chat-in .25s ease-out; }
+.duck-chat[hidden] { display: none; }
+.duck-chat-header { display: flex; justify-content: space-between; align-items: center; padding: 19px 20px; background: #f6efdf; border-bottom: 1px solid #e9dfcc; }
+.duck-chat-header strong { display: block; font-size: 15px; color: #514332; }
+.duck-chat-header span { display: block; font-size: 11px; color: #8a795f; margin-top: 3px; }
+.duck-close { border: 0; background: transparent; font-size: 26px; color: #7b6950; width: 32px; height: 32px; line-height: 1; }
+.duck-messages { height: min(260px, 32dvh); min-height: 100px; overflow-y: auto; padding: 16px; overscroll-behavior: contain; }
+.duck-message { width: fit-content; max-width: 94%; border-radius: 15px 15px 15px 4px; background: #f4efdf; padding: 11px 13px; font-size: 13px; line-height: 1.65; color: #62533f; white-space: pre-line; margin: 0 0 11px; overflow-wrap: anywhere; }
+.duck-message.is-user { margin-left: auto; background: #e9ede2; border-radius: 15px 15px 4px 15px; }
+.duck-message a { text-decoration: underline; color: #685331; display: block; margin-top: 7px; }
+.duck-prompts { display: flex; gap: 6px; padding: 0 16px 12px; flex-wrap: wrap; }
+.duck-prompts button { background: transparent; border: 1px solid #dfd5c3; border-radius: 20px; padding: 5px 9px; font-size: 10px; color: #7e6b50; }
+.duck-prompts button:hover { background: #f6efdf; }
+.duck-form { display: flex; gap: 8px; padding: 0 16px; }
+.duck-form input { width: 0; flex: 1; min-width: 0; border: 1px solid #e5dbca; border-radius: 13px; background: white; padding: 10px 12px; color: #514332; font-size: 16px; }
+.duck-form input:focus { outline: 2px solid #c2ae89; outline-offset: 1px; }
+.duck-form button { border: 0; border-radius: 13px; background: #756346; color: white; width: 42px; font-size: 22px; }
+.duck-note { font-size: 9px; text-align: center; color: #938672; margin: 10px 8px 13px; }
+@keyframes duck-stroll { 0%, 15%, 100% { transform: translateX(15px); } 40%, 65% { transform: translateX(-22px); } }
+@keyframes duck-waddle { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-3px) rotate(3deg); } }
+@keyframes duck-step { from { transform: translateY(-2px) rotate(-9deg); } to { transform: translateY(1px) rotate(9deg); } }
+@keyframes duck-wing { 0%, 75%, 100% { transform: rotate(0); } 80%, 90% { transform: rotate(-17deg); } 85%, 95% { transform: rotate(7deg); } }
+@keyframes duck-blink { 0%, 43%, 47%, 100% { transform: scaleY(1); } 45% { transform: scaleY(.1); } }
+@keyframes duck-love { 0%, 60%, 100% { opacity: 0; transform: translateY(6px); } 72%, 85% { opacity: 1; transform: translateY(-4px); } }
+@keyframes duck-chat-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (max-width: 575.98px) { .duck-companion { right: 16px; } .duck-playground { height: 108px; } .duck-launcher { top: 0; } .duck-invite { top: -15px; } }
+@media (prefers-reduced-motion: reduce) { .duck-companion *, .duck-companion *::before, .duck-companion *::after { animation: none !important; } }

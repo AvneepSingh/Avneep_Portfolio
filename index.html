@@ -181,8 +181,8 @@
                   src="assets/profile.jpg"
                   alt="Portrait of Avneep Singh"
                   id="profile-photo"
-                  width="660"
-                  height="990"
+                  width="2048"
+                  height="1365"
                   loading="eager"
                   decoding="async"
                   onerror="this.hidden=true;this.nextElementSibling.hidden=false"
@@ -868,45 +868,55 @@
 
   </footer>
 
+  <aside class="duck-companion" aria-label="Portfolio duck assistant">
+    <section class="duck-chat" id="duck-chat" aria-labelledby="duck-title" hidden>
+      <header class="duck-chat-header">
+        <div><strong id="duck-title">Dottie the duck</strong><span>Avneep’s little portfolio guide</span></div>
+        <button class="duck-close" type="button" aria-label="Close chat">×</button>
+      </header>
+      <div class="duck-messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0">
+        <p class="duck-message">Quack, hello! I’m Dottie ♡ Ask me about Avneep’s projects, studies, experience, or life outside coding.</p>
+      </div>
+      <div class="duck-prompts" aria-label="Suggested questions">
+        <button type="button">What is he building?</button>
+        <button type="button">What does he study?</button>
+        <button type="button">His hobbies?</button>
+      </div>
+      <form class="duck-form">
+        <label class="visually-hidden" for="duck-question">Ask about Avneep</label>
+        <input id="duck-question" name="question" placeholder="Ask about Avneep…" maxlength="400" autocomplete="off" required>
+        <button type="submit" aria-label="Send question">↑</button>
+      </form>
+      <p class="duck-note">Little answers from this portfolio · No messages are saved</p>
+    </section>
+    <div class="duck-playground">
+      <span class="duck-invite" aria-hidden="true">Ask me about Avneep ♡</span>
+      <button class="duck-launcher" type="button" aria-label="Chat with Dottie the duck about Avneep" aria-expanded="false" aria-controls="duck-chat">
+        <svg class="duck-drawing" viewBox="0 0 120 110" fill="none" aria-hidden="true">
+          <ellipse class="duck-shadow" cx="60" cy="101" rx="32" ry="5" fill="#68513c" opacity=".12"/>
+          <g class="duck-feet" fill="#e8a04e"><path class="duck-foot-left" d="M42 88l-7 10q10 6 21 0l-3-10z"/><path class="duck-foot-right" d="M65 88l-2 10q12 6 22-1l-10-9z"/></g>
+          <g class="duck-body">
+            <path d="M29 67Q11 62 18 48q7 10 17 7" fill="#f5d77a"/>
+            <ellipse cx="57" cy="72" rx="35" ry="25" fill="#f7dc87"/>
+            <path class="duck-wing" d="M38 66q18-9 30 4-10 20-28 8" fill="#edc866" stroke="#d9ae4d" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="75" cy="40" r="26" fill="#ffe9a5"/>
+            <path d="M65 15q-6-13 3-10 6 2 6 10M73 14q3-13 9-8 4 4-3 10" fill="#ffe9a5"/>
+            <path d="M94 43q25 1 17 10-9 6-21 0" fill="#efa254"/>
+            <ellipse class="duck-eye" cx="84" cy="35" rx="3" ry="4" fill="#493c32"/>
+            <circle cx="85" cy="34" r="1" fill="white"/>
+            <ellipse cx="86" cy="47" rx="5" ry="3" fill="#f1b5a0" opacity=".8"/>
+            <path d="M57 51l9 5-9 6zM75 51l-9 5 9 6z" fill="#b7bea0"/><circle cx="66" cy="56" r="3" fill="#97a581"/>
+          </g>
+          <path class="duck-heart" d="M24 23c-8-9-15 3 0 11 15-8 8-20 0-11" fill="#d9a298"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
   <!-- Bootstrap JavaScript -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
   ></script>
-
-  <!-- Portrait keyboard and touch toggle -->
-  <script>
-    (() => {
-      const portrait = document.querySelector(".portrait-halo");
-
-      if (!portrait) return;
-
-      function togglePortrait() {
-        const expanded = portrait.classList.toggle("is-expanded");
-        portrait.setAttribute("aria-pressed", String(expanded));
-      }
-
-      portrait.addEventListener("click", togglePortrait);
-
-      portrait.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          togglePortrait();
-        }
-
-        if (event.key === "Escape") {
-          portrait.classList.remove("is-expanded");
-          portrait.setAttribute("aria-pressed", "false");
-        }
-      });
-
-      document.addEventListener("click", (event) => {
-        if (!portrait.contains(event.target)) {
-          portrait.classList.remove("is-expanded");
-          portrait.setAttribute("aria-pressed", "false");
-        }
-      });
-    })();
-  </script>
 
 </body>
 </html>

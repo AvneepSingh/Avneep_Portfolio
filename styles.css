@@ -543,7 +543,7 @@ h3 {
 }
 
 .project-content p {
-  margin: 0 0 1rem;
+  margin: 1rem;
   max-width: 60ch;
   font-size: .875rem;
   line-height: 1.7;

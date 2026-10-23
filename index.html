@@ -1,41 +1,912 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="#fbfaf8" name="theme-color"/><meta content="Avneep Singh — computer science graduate student, developer, and researcher based in Montréal. Selected projects, experience, and interests." name="description"/>
-<title>Avneep Singh — Personal Portfolio</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-  crossorigin="anonymous"
->
-<!-- Custom styles AFTER Bootstrap -->
-<link href="styles.css" rel="stylesheet">
-<script defer="" src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <meta name="theme-color" content="#fbfaf8">
+  <meta
+    name="description"
+    content="Avneep Singh — computer science graduate student, developer and researcher based in Montréal. Explore selected projects, experience and interests."
+  >
+
+  <title>Avneep Singh — Personal Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Custom styling -->
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><nav aria-label="Main navigation" class="navbar navbar-expand-lg"><div class="container container-xl"><a aria-label="Avneep Singh, home" class="brand navbar-brand" href="#home">avneep<span class="brand-dot">.</span></a><button aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler border-0" data-bs-target="#site-nav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-lg-end" id="site-nav"><div class="navbar-nav align-items-lg-center gap-lg-4 py-3 py-lg-0"><a class="nav-link" href="#about">About</a><a class="nav-link" href="#projects">Projects</a><a class="nav-link" href="#experience">Experience</a><a class="nav-link" href="#research">Research</a><a class="nav-link" href="#contact">Contact</a><a class="nav-link linkedin-nav" href="https://www.linkedin.com/in/avneep10" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a></div></div></div></nav></header>
-<main id="main">
-<section class="hero shell container container-xl row align-items-center gy-5" id="home"><div class="hero-content reveal col-12 col-lg-7 order-2 order-lg-1"><div class="eyebrow"><span class="status-dot"></span> PERSONAL WEBSITE · MONTRÉAL, QC</div><h1>Hi, I'm <span>Avneep.</span></h1><p class="hero-lead">I explore ideas at the intersection of <em>intelligent systems</em>, software, and thoughtful design.</p><p class="hero-sub">Master of Applied Computer Science student at Concordia University. I enjoy building useful things, working through difficult problems, and making technology feel intuitive.</p><div class="hero-actions"><a class="button button-dark" href="#projects">Explore my work <span>↗</span></a><a class="text-link" href="#about">More about me <span>↓</span></a></div></div>
-<div class="portrait-column reveal col-12 col-lg-5 order-1 order-lg-2"><div class="portrait-halo"><div class="portrait-circle"><img alt="Portrait of Avneep Singh" decoding="async" height="990" id="profile-photo" loading="eager" onerror="this.hidden=true;this.nextElementSibling.hidden=false" src="assets/profile.jpg" width="660"/><div aria-label="Photo placeholder" class="photo-fallback" hidden="">AS</div></div></div><div class="portrait-caption"><span class="small-line"></span> Curiosity, built into practice.</div></div></section>
-<div class="section-divider shell container container-xl"></div>
-<section class="section shell about-section container container-xl row gy-4" id="about"><div class="section-index reveal col-12 col-lg-3">01 / ABOUT</div><div class="section-main reveal col-12 col-lg-9"><h2>A little about me<span class="warm-period">.</span></h2><div class="prose"><p>I'm a computer science graduate student based in Montréal, Canada. My interests span machine learning, human-centred software, information retrieval, and the systems that make modern technology dependable.</p><p>Before joining Concordia University, I studied Computer Science and Engineering at IIIT Guwahati. Along the way, I've worked in software development, supported students as a teaching assistant and tutor, and explored projects ranging from document intelligence to generative models.</p><p>Outside of building software, I enjoy learning languages, photography, and finding new ways to turn an interesting idea into something tangible.</p></div><div class="facts row gy-3"><div class="col-12 col-sm-6 col-xl-4"><span>Currently</span><strong>Concordia University</strong></div><div class="col-12 col-sm-6 col-xl-4"><span>Based in</span><strong>Montréal, Canada</strong></div><div class="col-12 col-sm-6 col-xl-4"><span>Interested in</span><strong>AI · Systems · Design</strong></div></div></div></section>
-<div class="section-divider shell container container-xl"></div>
-<section class="section shell container container-xl row gy-4" id="projects"><div class="section-index reveal col-12 col-lg-3">02 / PROJECTS</div><div class="section-main col-12 col-lg-9"><div class="heading-row reveal"><div><h2>Selected work<span class="warm-period">.</span></h2><p class="section-intro">A collection of things I've designed, developed, and explored.</p></div><span class="quiet-label">2024 — NOW</span></div><div class="project-list">
-<article class="project-card reveal row g-0"><div aria-hidden="true" class="project-image visual-one col-12 col-md-5"><div class="visual-ui"><div class="ui-top"><i></i><i></i><i></i></div><div class="ui-columns"><div class="ui-side"><b></b><b></b><b></b></div><div class="ui-body"><b></b><b></b><b></b><div class="ui-answer"></div></div></div></div></div><div class="project-content col-12 col-md-7"><div class="project-meta">01 / AI &amp; INFORMATION RETRIEVAL</div><h3>EvidenceLens <span>↗</span></h3><p>Exploring evidence-grounded question answering across documents, with retrieval, source attribution, and an emphasis on verifiable responses.</p><div class="chips"><span>Python</span><span>RAG</span><span>Vector search</span><span>Docker</span></div><span class="project-state">Ongoing project</span></div></article>
-<article class="project-card reveal row g-0"><div aria-hidden="true" class="project-image visual-two col-12 col-md-5"><div class="task-art"><div class="task-top"></div><div class="task-row"><span>✓</span><i></i></div><div class="task-row"><span>✓</span><i></i></div><div class="task-row"><span>○</span><i></i></div><div class="task-row"><span>○</span><i></i></div></div></div><div class="project-content col-12 col-md-7"><div class="project-meta">02 / SOFTWARE &amp; PRODUCT DESIGN</div><h3>Task Management Platform <span>↗</span></h3><p>Built around real stakeholder needs: interface design, workflow improvements, testing, documentation, and product demonstrations.</p><div class="chips"><span>Web application</span><span>UX</span><span>Requirements</span></div><span class="project-state">Software project</span></div></article>
-<article class="project-card reveal row g-0"><div aria-hidden="true" class="project-image visual-three col-12 col-md-5"><div class="model-art"><div class="model-ring ring-a"></div><div class="model-ring ring-b"></div><div class="model-core">3D</div><span class="model-spark s1">✦</span><span class="model-spark s2">✧</span></div></div><div class="project-content col-12 col-md-7"><div class="project-meta">03 / GENERATIVE AI</div><h3>Text-to-3D Exploration <span>↗</span></h3><p>Experimenting with pretrained generative models, multiview synthesis, and workflows for turning concepts into 3D assets.</p><div class="chips"><span>Generative AI</span><span>Computer vision</span><span>Python</span></div><span class="project-state">Experimental work</span></div></article>
-<article class="project-card reveal row g-0"><div aria-hidden="true" class="project-image visual-four col-12 col-md-5"><div class="network-art"><div class="network-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="network-beam"></div></div></div><div class="project-content col-12 col-md-7"><div class="project-meta">04 / MACHINE LEARNING</div><h3>Computer Vision Experiments <span>↗</span></h3><p>Studying deep learning architectures, visual representations, and approaches that combine convolutional processing with attention.</p><div class="chips"><span>PyTorch</span><span>Transformers</span><span>Deep learning</span></div><span class="project-state">Research-oriented exploration</span></div></article>
-</div><p class="project-note reveal">Individual repositories and write-ups will be linked here as they become public.</p></div></section>
-<div class="section-divider shell container container-xl"></div>
-<section class="section shell container container-xl row gy-4" id="experience"><div class="section-index reveal col-12 col-lg-3">03 / JOURNEY</div><div class="section-main col-12 col-lg-9"><h2 class="reveal">Experience &amp; education<span class="warm-period">.</span></h2><div class="timeline-block reveal"><div class="timeline-label">EXPERIENCE</div><div class="timeline-item row gy-2"><span class="timeline-date col-12 col-sm-4">2026 — Present</span><div class="col-12 col-sm-8"><h3>Teaching Assistant</h3><p>Concordia University · Montréal</p><small>Helping students develop technical communication and problem-solving skills.</small></div></div><div class="timeline-item row gy-2"><span class="timeline-date col-12 col-sm-4">2025 — Present</span><div class="col-12 col-sm-8"><h3>Academic Tutor</h3><p>Kigen Academy</p><small>Supporting learners in mathematics and computer science.</small></div></div><div class="timeline-item row gy-2"><span class="timeline-date col-12 col-sm-4">Dec 2023 — Jun 2024</span><div class="col-12 col-sm-8"><h3>Software Development Intern</h3><p>Covalience India</p><small>Professional experience working on software development tasks.</small></div></div></div><div class="timeline-block reveal"><div class="timeline-label">EDUCATION</div><div class="timeline-item row gy-2"><span class="timeline-date col-12 col-sm-4">2026 — Present</span><div class="col-12 col-sm-8"><h3>Master of Applied Computer Science</h3><p>Concordia University · Montréal, Canada</p></div></div><div class="timeline-item row gy-2"><span class="timeline-date col-12 col-sm-4">Completed</span><div class="col-12 col-sm-8"><h3>B.Tech, Computer Science &amp; Engineering</h3><p>Indian Institute of Information Technology Guwahati</p></div></div></div></div></section>
-<div class="section-divider shell container container-xl"></div>
-<section class="section shell container container-xl row gy-4" id="research"><div class="section-index reveal col-12 col-lg-3">04 / INTERESTS</div><div class="section-main col-12 col-lg-9"><h2 class="reveal">Ideas I keep coming back to<span class="warm-period">.</span></h2><p class="section-intro reveal">I'm drawn to research questions and technical challenges that connect theory with everyday utility.</p><div class="interest-grid row g-3"><div class="interest reveal col-12 col-md-6 col-xl-4"><span>01</span><h3>Trustworthy AI</h3><p>Making generated answers more grounded, transparent, and reliable.</p></div><div class="interest reveal col-12 col-md-6 col-xl-4"><span>02</span><h3>Learning systems</h3><p>Understanding models, representations, and effective evaluation.</p></div><div class="interest reveal col-12 col-md-6 col-xl-4"><span>03</span><h3>Human-centred software</h3><p>Crafting simple interactions around complex technical systems.</p></div></div><div class="publication-note reveal"><span class="publication-mark">✳</span><div><strong>Publications &amp; writing</strong><p>A space for future research notes, project write-ups, and publications. No publications are listed at present.</p></div></div></div></section>
-<section class="contact-section" id="contact"><div class="shell contact-layout reveal container container-xl"><div class="contact-kicker">05 / SAY HELLO</div><h2>Let's keep the conversation going<span>.</span></h2><p>Interested in discussing research, software, a creative idea, or a collaboration? I'd be happy to connect.</p><div class="contact-links"><a class="button button-dark" href="https://www.linkedin.com/in/avneep10" rel="noopener noreferrer" target="_blank">Connect on LinkedIn ↗</a><a class="text-link" href="#home">Back to top ↑</a></div></div></section>
-</main><footer class="site-footer shell container container-xl"><span>© <span id="year">2026</span> Avneep Singh</span><span>Made with curiosity in Montréal.</span><a href="#home">↑ Top</a></footer>
-<script crossorigin="anonymous" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script></body></html>
+
+  <a class="skip-link" href="#main">
+    Skip to content
+  </a>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header class="site-header">
+    <nav
+      class="navbar navbar-expand-lg"
+      aria-label="Main navigation"
+    >
+      <div class="container container-xl">
+
+        <a
+          class="brand navbar-brand"
+          href="#home"
+          aria-label="Avneep Singh, home"
+        >
+          avneep<span class="brand-dot">.</span>
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#site-nav"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          class="collapse navbar-collapse justify-content-lg-end"
+          id="site-nav"
+        >
+          <div
+            class="navbar-nav align-items-lg-center gap-lg-4 py-3 py-lg-0"
+          >
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="#experience">Experience</a>
+            <a class="nav-link" href="#research">Research</a>
+            <a class="nav-link" href="#contact">Contact</a>
+
+            <a
+              class="nav-link linkedin-nav"
+              href="https://www.linkedin.com/in/avneep10"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section
+      class="hero shell container container-xl"
+      id="home"
+    >
+      <div class="row align-items-center gy-5">
+
+        <!-- Introduction -->
+
+        <div
+          class="hero-content reveal col-12 col-lg-7 order-2 order-lg-1"
+        >
+
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            PERSONAL WEBSITE · MONTRÉAL, QC
+          </div>
+
+          <h1>
+            Hi, I'm <span>Avneep.</span>
+          </h1>
+
+          <p class="hero-lead">
+            I explore ideas at the intersection of
+            <em>intelligent systems</em>,
+            software, and thoughtful design.
+          </p>
+
+          <p class="hero-sub">
+            Master of Applied Computer Science student at
+            Concordia University. I enjoy building useful
+            things, working through difficult problems,
+            and making technology feel intuitive.
+          </p>
+
+          <div class="hero-actions">
+
+            <a class="button button-dark" href="#projects">
+              Explore my work
+              <span>↗</span>
+            </a>
+
+            <a class="text-link" href="#about">
+              More about me ↓
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Interactive portrait -->
+
+        <div
+          class="portrait-column reveal col-12 col-lg-5 order-1 order-lg-2"
+        >
+
+          <div class="portrait-stage">
+
+            <div
+              class="portrait-halo"
+              tabindex="0"
+              role="button"
+              aria-label="Expand portrait of Avneep Singh"
+              aria-pressed="false"
+            >
+
+              <div class="portrait-circle">
+
+                <img
+                  src="assets/profile.jpg"
+                  alt="Portrait of Avneep Singh"
+                  id="profile-photo"
+                  width="660"
+                  height="990"
+                  loading="eager"
+                  decoding="async"
+                  onerror="this.hidden=true;this.nextElementSibling.hidden=false"
+                >
+
+                <div class="photo-fallback" hidden>
+                  AS
+                </div>
+
+              </div>
+
+              <!-- Small decorative sparkles -->
+
+              <span
+                class="portrait-spark spark-one"
+                aria-hidden="true"
+              >✦</span>
+
+              <span
+                class="portrait-spark spark-two"
+                aria-hidden="true"
+              >✧</span>
+
+              <span
+                class="portrait-spark spark-three"
+                aria-hidden="true"
+              >✦</span>
+
+            </div>
+
+          </div>
+
+          <div class="portrait-caption">
+            <span class="small-line"></span>
+            Curiosity, built into practice.
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider shell container container-xl"></div>
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section
+      class="section shell container container-xl about-section"
+      id="about"
+    >
+      <div class="row gy-4">
+
+        <div class="section-index reveal col-12 col-lg-3">
+          01 / ABOUT
+        </div>
+
+        <div class="section-main reveal col-12 col-lg-9">
+
+          <h2>
+            A little about me<span class="warm-period">.</span>
+          </h2>
+
+          <div class="prose">
+
+            <p>
+              I'm a computer science graduate student based
+              in Montréal, Canada. My interests span machine
+              learning, human-centred software, information
+              retrieval, and the systems that make modern
+              technology dependable.
+            </p>
+
+            <p>
+              Before joining Concordia University, I studied
+              Computer Science and Engineering at IIIT
+              Guwahati. Along the way, I've worked in
+              software development, supported students as
+              a teaching assistant and tutor, and explored
+              projects ranging from document intelligence
+              to generative models.
+            </p>
+
+            <p>
+              Outside of building software, I enjoy learning
+              languages, photography, and finding new ways
+              to turn an interesting idea into something
+              tangible.
+            </p>
+
+          </div>
+
+          <div class="facts row gy-3">
+
+            <div class="col-12 col-sm-6 col-xl-4">
+              <span>Currently</span>
+              <strong>Concordia University</strong>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-4">
+              <span>Based in</span>
+              <strong>Montréal, Canada</strong>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-4">
+              <span>Interested in</span>
+              <strong>AI · Systems · Design</strong>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider shell container container-xl"></div>
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section
+      class="section shell container container-xl"
+      id="projects"
+    >
+      <div class="row gy-4">
+
+        <div class="section-index reveal col-12 col-lg-3">
+          02 / PROJECTS
+        </div>
+
+        <div class="section-main col-12 col-lg-9">
+
+          <div class="heading-row reveal">
+
+            <div>
+              <h2>
+                Selected work<span class="warm-period">.</span>
+              </h2>
+
+              <p class="section-intro">
+                A collection of things I've designed,
+                developed, and explored.
+              </p>
+            </div>
+
+            <span class="quiet-label">
+              2024 — NOW
+            </span>
+
+          </div>
+
+          <div class="project-list">
+
+            <!-- Project 1 -->
+
+            <article class="project-card reveal row g-0">
+
+              <div
+                class="project-image visual-one col-12 col-md-5"
+                aria-hidden="true"
+              >
+                <div class="visual-ui">
+                  <div class="ui-top">
+                    <i></i><i></i><i></i>
+                  </div>
+
+                  <div class="ui-columns">
+                    <div class="ui-side">
+                      <b></b><b></b><b></b>
+                    </div>
+
+                    <div class="ui-body">
+                      <b></b><b></b><b></b>
+                      <div class="ui-answer"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="project-content col-12 col-md-7 d-flex flex-column"
+              >
+
+                <div class="project-meta">
+                  01 / AI &amp; INFORMATION RETRIEVAL
+                </div>
+
+                <h3>
+                  EvidenceLens
+                  <span aria-hidden="true">↗</span>
+                </h3>
+
+                <p>
+                  Exploring evidence-grounded question
+                  answering across documents, with
+                  retrieval, source attribution, and an
+                  emphasis on verifiable responses.
+                </p>
+
+                <div class="chips">
+                  <span>Python</span>
+                  <span>RAG</span>
+                  <span>Vector search</span>
+                  <span>Docker</span>
+                </div>
+
+                <span class="project-state">
+                  Ongoing project
+                </span>
+
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+
+            <article class="project-card reveal row g-0">
+
+              <div
+                class="project-image visual-two col-12 col-md-5"
+                aria-hidden="true"
+              >
+
+                <div class="task-art">
+
+                  <div class="task-top"></div>
+
+                  <div class="task-row">
+                    <span>✓</span><i></i>
+                  </div>
+
+                  <div class="task-row">
+                    <span>✓</span><i></i>
+                  </div>
+
+                  <div class="task-row">
+                    <span>○</span><i></i>
+                  </div>
+
+                  <div class="task-row">
+                    <span>○</span><i></i>
+                  </div>
+
+                </div>
+              </div>
+
+              <div
+                class="project-content col-12 col-md-7 d-flex flex-column"
+              >
+
+                <div class="project-meta">
+                  02 / SOFTWARE &amp; PRODUCT DESIGN
+                </div>
+
+                <h3>
+                  Task Management Platform
+                  <span aria-hidden="true">↗</span>
+                </h3>
+
+                <p>
+                  Built around real stakeholder needs:
+                  interface design, workflow improvements,
+                  testing, documentation, and product
+                  demonstrations.
+                </p>
+
+                <div class="chips">
+                  <span>Web application</span>
+                  <span>UX</span>
+                  <span>Requirements</span>
+                </div>
+
+                <span class="project-state">
+                  Software project
+                </span>
+
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+
+            <article class="project-card reveal row g-0">
+
+              <div
+                class="project-image visual-three col-12 col-md-5"
+                aria-hidden="true"
+              >
+
+                <div class="model-art">
+
+                  <div class="model-ring ring-a"></div>
+                  <div class="model-ring ring-b"></div>
+
+                  <div class="model-core">
+                    3D
+                  </div>
+
+                  <span class="model-spark s1">✦</span>
+                  <span class="model-spark s2">✧</span>
+
+                </div>
+
+              </div>
+
+              <div
+                class="project-content col-12 col-md-7 d-flex flex-column"
+              >
+
+                <div class="project-meta">
+                  03 / GENERATIVE AI
+                </div>
+
+                <h3>
+                  Text-to-3D Exploration
+                  <span aria-hidden="true">↗</span>
+                </h3>
+
+                <p>
+                  Experimenting with pretrained generative
+                  models, multiview synthesis, and workflows
+                  for turning concepts into 3D assets.
+                </p>
+
+                <div class="chips">
+                  <span>Generative AI</span>
+                  <span>Computer vision</span>
+                  <span>Python</span>
+                </div>
+
+                <span class="project-state">
+                  Experimental work
+                </span>
+
+              </div>
+            </article>
+
+            <!-- Project 4 -->
+
+            <article class="project-card reveal row g-0">
+
+              <div
+                class="project-image visual-four col-12 col-md-5"
+                aria-hidden="true"
+              >
+
+                <div class="network-art">
+
+                  <div class="network-dots">
+                    <i></i><i></i><i></i>
+                    <i></i><i></i><i></i>
+                    <i></i><i></i><i></i>
+                  </div>
+
+                  <div class="network-beam"></div>
+
+                </div>
+              </div>
+
+              <div
+                class="project-content col-12 col-md-7 d-flex flex-column"
+              >
+
+                <div class="project-meta">
+                  04 / MACHINE LEARNING
+                </div>
+
+                <h3>
+                  Computer Vision Experiments
+                  <span aria-hidden="true">↗</span>
+                </h3>
+
+                <p>
+                  Studying deep learning architectures,
+                  visual representations, and approaches
+                  that combine convolutional processing
+                  with attention.
+                </p>
+
+                <div class="chips">
+                  <span>PyTorch</span>
+                  <span>Transformers</span>
+                  <span>Deep learning</span>
+                </div>
+
+                <span class="project-state">
+                  Research-oriented exploration
+                </span>
+
+              </div>
+            </article>
+
+          </div>
+
+          <p class="project-note reveal">
+            Individual repositories and write-ups will be
+            linked here as they become public.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider shell container container-xl"></div>
+
+    <!-- =========================
+         EXPERIENCE & EDUCATION
+    ========================== -->
+
+    <section
+      class="section shell container container-xl"
+      id="experience"
+    >
+      <div class="row gy-4">
+
+        <div class="section-index reveal col-12 col-lg-3">
+          03 / JOURNEY
+        </div>
+
+        <div class="section-main col-12 col-lg-9">
+
+          <h2 class="reveal">
+            Experience &amp; education<span class="warm-period">.</span>
+          </h2>
+
+          <div class="timeline-block reveal">
+
+            <div class="timeline-label">
+              EXPERIENCE
+            </div>
+
+            <div class="timeline-item row gy-2">
+
+              <span class="timeline-date col-12 col-sm-4">
+                2026 — Present
+              </span>
+
+              <div class="col-12 col-sm-8">
+                <h3>Teaching Assistant</h3>
+                <p>Concordia University · Montréal</p>
+
+                <small>
+                  Helping students develop technical
+                  communication and problem-solving skills.
+                </small>
+              </div>
+
+            </div>
+
+            <div class="timeline-item row gy-2">
+
+              <span class="timeline-date col-12 col-sm-4">
+                2025 — Present
+              </span>
+
+              <div class="col-12 col-sm-8">
+                <h3>Academic Tutor</h3>
+                <p>Kigen Academy</p>
+
+                <small>
+                  Supporting learners in mathematics
+                  and computer science.
+                </small>
+              </div>
+
+            </div>
+
+            <div class="timeline-item row gy-2">
+
+              <span class="timeline-date col-12 col-sm-4">
+                Dec 2023 — Jun 2024
+              </span>
+
+              <div class="col-12 col-sm-8">
+                <h3>Software Development Intern</h3>
+                <p>Covalience India</p>
+
+                <small>
+                  Professional experience working on
+                  software development tasks.
+                </small>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="timeline-block reveal">
+
+            <div class="timeline-label">
+              EDUCATION
+            </div>
+
+            <div class="timeline-item row gy-2">
+
+              <span class="timeline-date col-12 col-sm-4">
+                2026 — Present
+              </span>
+
+              <div class="col-12 col-sm-8">
+                <h3>
+                  Master of Applied Computer Science
+                </h3>
+
+                <p>
+                  Concordia University · Montréal, Canada
+                </p>
+              </div>
+
+            </div>
+
+            <div class="timeline-item row gy-2">
+
+              <span class="timeline-date col-12 col-sm-4">
+                Completed
+              </span>
+
+              <div class="col-12 col-sm-8">
+                <h3>
+                  B.Tech, Computer Science &amp; Engineering
+                </h3>
+
+                <p>
+                  Indian Institute of Information
+                  Technology Guwahati
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider shell container container-xl"></div>
+
+    <!-- =========================
+         RESEARCH / INTERESTS
+    ========================== -->
+
+    <section
+      class="section shell container container-xl"
+      id="research"
+    >
+      <div class="row gy-4">
+
+        <div class="section-index reveal col-12 col-lg-3">
+          04 / INTERESTS
+        </div>
+
+        <div class="section-main col-12 col-lg-9">
+
+          <h2 class="reveal">
+            Ideas I keep coming back to<span class="warm-period">.</span>
+          </h2>
+
+          <p class="section-intro reveal">
+            I'm drawn to research questions and technical
+            challenges that connect theory with everyday utility.
+          </p>
+
+          <div class="interest-grid row g-3">
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <article class="interest reveal h-100">
+                <span>01</span>
+                <h3>Trustworthy AI</h3>
+                <p>
+                  Making generated answers more grounded,
+                  transparent, and reliable.
+                </p>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <article class="interest reveal h-100">
+                <span>02</span>
+                <h3>Learning systems</h3>
+                <p>
+                  Understanding models, representations,
+                  and effective evaluation.
+                </p>
+              </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <article class="interest reveal h-100">
+                <span>03</span>
+                <h3>Human-centred software</h3>
+                <p>
+                  Crafting simple interactions around complex
+                  technical systems.
+                </p>
+              </article>
+            </div>
+
+          </div>
+
+          <div class="publication-note reveal">
+
+            <span class="publication-mark">✳</span>
+
+            <div>
+              <strong>Publications &amp; writing</strong>
+
+              <p>
+                A space for future research notes,
+                project write-ups, and publications.
+                No publications are listed at present.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact-section" id="contact">
+
+      <div
+        class="shell contact-layout reveal container container-xl"
+      >
+
+        <div class="contact-kicker">
+          05 / SAY HELLO
+        </div>
+
+        <h2>
+          Let's keep the conversation
+          going<span>.</span>
+        </h2>
+
+        <p>
+          Interested in discussing research, software,
+          a creative idea, or a collaboration?
+          I'd be happy to connect.
+        </p>
+
+        <div class="contact-links">
+
+          <a
+            class="button button-dark"
+            href="https://www.linkedin.com/in/avneep10"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Connect on LinkedIn ↗
+          </a>
+
+          <a class="text-link" href="#home">
+            Back to top ↑
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="site-footer shell container container-xl">
+
+    <span>
+      © <span id="year">2026</span> Avneep Singh
+    </span>
+
+    <span>
+      Made with curiosity in Montréal.
+    </span>
+
+    <a href="#home">↑ Top</a>
+
+  </footer>
+
+  <!-- Bootstrap JavaScript -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <!-- Portrait keyboard and touch toggle -->
+  <script>
+    (() => {
+      const portrait = document.querySelector(".portrait-halo");
+
+      if (!portrait) return;
+
+      function togglePortrait() {
+        const expanded = portrait.classList.toggle("is-expanded");
+        portrait.setAttribute("aria-pressed", String(expanded));
+      }
+
+      portrait.addEventListener("click", togglePortrait);
+
+      portrait.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          togglePortrait();
+        }
+
+        if (event.key === "Escape") {
+          portrait.classList.remove("is-expanded");
+          portrait.setAttribute("aria-pressed", "false");
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!portrait.contains(event.target)) {
+          portrait.classList.remove("is-expanded");
+          portrait.setAttribute("aria-pressed", "false");
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

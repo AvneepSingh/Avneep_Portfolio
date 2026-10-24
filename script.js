@@ -65,33 +65,35 @@ if (portrait) {
   });
 }
 
-// Dottie's knowledge stays grounded in the public portfolio, without a server or API key.
+// Match CV topics by specificity so a named institution or project beats a generic word.
 function answerPortfolioQuestion(question) {
-  const q = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9+# ]/g, ' ');
-  const topics = [
-    { words: ['evidencelens', 'rag', 'retrieval', 'documents', 'document'], text: 'EvidenceLens is Avneep’s ongoing project exploring question answering across documents, using retrieval and source attribution to make answers verifiable. It uses Python, RAG, vector search, and Docker.', section: 'projects' },
-    { words: ['3d', 'generative', 'multiview'], text: 'Avneep experiments with pretrained generative models, multiview synthesis, and workflows that turn text concepts into 3D assets. A little imagination, a lot of exploration! ✦', section: 'projects' },
-    { words: ['vision', 'pytorch', 'transformers', 'convolutional'], text: 'His computer vision experiments explore deep learning architectures, visual representations, and combining convolutional processing with attention, using PyTorch and Transformers.', section: 'projects' },
-    { words: ['task', 'management', 'stakeholder'], text: 'Avneep worked on a Task Management Platform built around stakeholder needs, including interface design, workflow improvements, testing, documentation, and product demonstrations.', section: 'projects' },
-    { words: ['hobby', 'hobbies', 'fun', 'outside', 'photography', 'languages', 'free time'], text: 'Away from code, Avneep enjoys learning languages, photography, and turning interesting ideas into tangible things. I personally enjoy a good waddle. ♡', section: 'about' },
-    { words: ['study', 'studies', 'education', 'degree', 'university', 'concordia', 'college', 'masters', 'master', 'btech', 'guwahati', 'qualifications'], text: 'Avneep is a Master of Applied Computer Science student at Concordia University in Montréal (2026–present). He previously completed his B.Tech in Computer Science & Engineering at IIIT Guwahati.', section: 'experience' },
-    { words: ['experience', 'work history', 'worked', 'intern', 'internship', 'covalience', 'job', 'career', 'teaching', 'tutor', 'kigen'], text: 'He is a Teaching Assistant at Concordia University (2026–present) and an Academic Tutor at Kigen Academy (2025–present). He was a Software Development Intern at Covalience India from December 2023 to June 2024.', section: 'experience' },
-    { words: ['project', 'projects', 'building', 'built', 'portfolio'], text: 'His selected work includes EvidenceLens (document question answering), a Task Management Platform, Text-to-3D Exploration, and Computer Vision Experiments. Ask me about any one of them! Quack ✦', section: 'projects' },
-    { words: ['skill', 'skills', 'stack', 'technologies', 'technology', 'programming', 'python', 'docker', 'code', 'coding'], text: 'His portfolio features Python, PyTorch, Transformers, RAG, vector search, Docker, and web application work. His interests connect intelligent systems, dependable software, and thoughtful design.', section: 'projects' },
-    { words: ['research', 'interest', 'interests', 'ai', 'machine learning'], text: 'Avneep is interested in trustworthy AI, learning systems, and human-centred software. He explores grounded answers, model representations and evaluation, and simple interfaces for complex systems.', section: 'research' },
-    { words: ['where', 'location', 'based', 'live', 'lives', 'montreal', 'canada'], text: 'Avneep is based in Montréal, Québec, Canada, where he studies at Concordia University.', section: 'about' },
-    { words: ['contact', 'email', 'linkedin', 'connect', 'hire', 'hiring', 'available', 'availability', 'resume', 'cv'], text: 'You can connect with Avneep through LinkedIn using the contact section. His portfolio doesn’t list an email, downloadable résumé, or current hiring availability, so it’s best to ask him directly.', section: 'contact' },
-    { words: ['github', 'repository', 'repositories', 'source'], text: 'Individual repositories and write-ups will be linked on the portfolio as they become public. For now, you can explore the project summaries.', section: 'projects' },
-    { words: ['who', 'about', 'introduce', 'summary', 'avneep'], text: 'Avneep Singh is a computer science graduate student, developer, and researcher based in Montréal. He enjoys building useful things and exploring intelligent systems, software, and thoughtful design.', section: 'about' }
-  ];
-  // Whole words keep short terms such as “AI” from matching “email”.
-  const padded = ` ${q.replace(/\s+/g, ' ').trim()} `;
-  const match = topics.find(topic => topic.words.some(word => padded.includes(` ${word} `)));
-  if (match) return match;
-  if (/\b(hi|hello|hey|quack)\b/.test(q)) return { text: 'Hello hello! ♡ I’m Dottie, Avneep’s little duck guide. What would you like to know about his studies, projects, or interests?' };
+  const normalize = text => text.toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9+# ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const q = normalize(question);
+  const padded = ` ${q} `;
+  const has = phrase => padded.includes(` ${normalize(phrase)} `);
+  const find = id => portfolioKnowledge.find(topic => topic.id === id);
+  // Explicit publication questions should include the current manuscript statuses and citation limits.
+  if (['publication', 'publications', 'paper', 'papers', 'published', 'journal', 'doi', 'submission', 'manuscript', 'manuscripts', 'lightweight', 'guava', 'ensembling'].some(has)) return find('publications');
+  if (['programming languages', 'technical skills', 'tech stack', 'technology stack'].some(has)) return find('skills');
+  if (['graduate', 'graduation', 'finish his degree', 'expected completion'].some(has)) return find('education');
+  if (['all projects', 'list projects', 'list his projects', 'what is he building', 'what has he built'].some(has)) return find('projects');
+  if (['research experience', 'research background', 'research work', 'his research', 'your research'].some(has)
+      && !['panjab', 'punjab', 'gan', 'gans', 'low light', 'fpga'].some(has)) return find('research');
+  const ranked = portfolioKnowledge.map((topic, index) => {
+    const matches = topic.words.filter(has);
+    const score = matches.reduce((best, word) => Math.max(best, normalize(word).length), 0);
+    const general = ['education', 'skills', 'projects', 'research', 'experience', 'about'].includes(topic.id);
+    return { topic, score: general ? score / 100 : score, index };
+  }).filter(item => item.score > 0).sort((a, b) => b.score - a.score || a.index - b.index);
+  // “Avneep” and “about” identify the subject, rather than the requested topic.
+  const specific = ranked.filter(item => item.topic.id !== 'about');
+  if (specific.length) return specific[0].topic;
+  if (/\b(hi|hello|hey|quack)\b/.test(q)) return { text: 'Hello hello! ♡ I’m Dottie, Avneep’s little duck guide. Ask about his research, publications, projects, education, experience, skills, or achievements.' };
   if (/\b(thanks|thank|bye)\b/.test(q)) return { text: 'Happy to help! A little quack for your day. ♡' };
-  if (/\b(duck|dottie|you|name)\b/.test(q)) return { text: 'I’m Dottie! I waddle around this corner and answer questions from Avneep’s portfolio. Ask me what he’s building! ♡' };
-  return { text: 'I don’t have that detail in Avneep’s portfolio, and I wouldn’t want to guess! I can help with his projects, education, experience, skills, location, or hobbies.', section: 'contact' };
+  if (/\b(duck|dottie)\b/.test(q)) return { text: 'I’m Dottie! I waddle around this corner and answer questions using Avneep’s CV and portfolio. ♡' };
+  if (/^(who is avneep( singh)?|tell me about avneep( singh)?|about avneep( singh)?|introduce avneep|summary|who is he)$/.test(q)) return find('about');
+  return { text: 'I don’t have that detail in Avneep’s CV or portfolio, so I wouldn’t want to guess! Try his research, publications, projects, education, skills, mentoring, certifications, test scores, languages, or community activities.', section: 'contact' };
 }
 
 const duckCompanion = document.querySelector('.duck-companion');

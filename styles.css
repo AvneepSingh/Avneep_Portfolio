@@ -1394,3 +1394,10 @@ h3 {
 @keyframes duck-chat-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
 @media (max-width: 575.98px) { .duck-companion { right: 16px; } .duck-playground { height: 108px; } .duck-launcher { top: 0; } .duck-invite { top: -15px; } }
 @media (prefers-reduced-motion: reduce) { .duck-companion *, .duck-companion *::before, .duck-companion *::after { animation: none !important; } }
+
+.project-emblem { font-family: 'Manrope', sans-serif; font-size: clamp(2.6rem, 5vw, 4.5rem); font-weight: 800; letter-spacing: -.06em; color: #806a53; background: #fff8; border: 1px solid #fff9; border-radius: 26px; min-width: 125px; padding: 18px 25px; text-align: center; transform: rotate(-7deg); box-shadow: 12px 18px 35px #6059491d; }
+.publication-status { font-size: 11px !important; color: var(--accent-dark) !important; }
+
+.research-manuscript { margin-top: 22px; }
+.research-manuscript + .research-manuscript { padding-top: 20px; border-top: 1px solid var(--line); }
+.research-manuscript h3 { font-size: 17px; line-height: 1.5; margin: 0 0 7px; }

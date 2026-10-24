@@ -15,6 +15,7 @@ For a root profile URL, make a repository called `YOUR-GITHUB-USERNAME.github.io
 
 ## Editing
 - Update your project descriptions and bio in `index.html`.
+- Update `portfolio-data.js` for Dottie’s CV knowledge. It loads before `script.js`; keep both files when deploying. Dottie matches supported topics locally and states when a detail is missing.
 - Adjust color tokens at the beginning of `styles.css`.
 - `assets/profile.jpg` is a 2:3 crop of your provided original photo, focusing on your face and shoulders. The website displays it inside a circular mask.
 - Add verified links to projects once you have published repositories or demos.

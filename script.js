@@ -23,7 +23,7 @@ if (portrait) {
     const expanded = pinned || hovering;
     portrait.classList.toggle('is-expanded', expanded);
     portrait.setAttribute('aria-pressed', String(expanded));
-    portrait.setAttribute('aria-label', `${expanded ? 'Collapse' : 'Expand'} portrait of Avneep Singh`);
+    portrait.setAttribute('aria-label', portfolioLanguage.text(`${expanded ? 'Collapse' : 'Expand'} portrait of Avneep Singh`));
   };
   portrait.addEventListener('pointerenter', event => {
     if (event.pointerType === 'touch') return;
@@ -74,11 +74,11 @@ function answerPortfolioQuestion(question) {
   const has = phrase => padded.includes(` ${normalize(phrase)} `);
   const find = id => portfolioKnowledge.find(topic => topic.id === id);
   // Explicit publication questions should include the current manuscript statuses and citation limits.
-  if (['publication', 'publications', 'paper', 'papers', 'published', 'journal', 'doi', 'submission', 'manuscript', 'manuscripts', 'lightweight', 'guava', 'ensembling'].some(has)) return find('publications');
-  if (['programming languages', 'technical skills', 'tech stack', 'technology stack'].some(has)) return find('skills');
+  if (['publication', 'publications', 'paper', 'papers', 'published', 'journal', 'doi', 'submission', 'manuscript', 'manuscripts', 'lightweight', 'guava', 'ensembling', 'soumission', 'manuscrit', 'manuscrits', 'goyavier', 'article', 'articles'].some(has)) return find('publications');
+  if (['programming languages', 'technical skills', 'tech stack', 'technology stack', 'langages de programmation', 'competences techniques'].some(has)) return find('skills');
   if (['graduate', 'graduation', 'finish his degree', 'expected completion'].some(has)) return find('education');
-  if (['all projects', 'list projects', 'list his projects', 'what is he building', 'what has he built'].some(has)) return find('projects');
-  if (['research experience', 'research background', 'research work', 'his research', 'your research'].some(has)
+  if (['all projects', 'list projects', 'list his projects', 'what is he building', 'what has he built', 'quels sont ses projets', 'tous les projets'].some(has)) return find('projects');
+  if (['research experience', 'research background', 'research work', 'his research', 'your research', 'ses recherches', 'sa recherche'].some(has)
       && !['panjab', 'punjab', 'gan', 'gans', 'low light', 'fpga'].some(has)) return find('research');
   const ranked = portfolioKnowledge.map((topic, index) => {
     const matches = topic.words.filter(has);
@@ -89,11 +89,11 @@ function answerPortfolioQuestion(question) {
   // “Avneep” and “about” identify the subject, rather than the requested topic.
   const specific = ranked.filter(item => item.topic.id !== 'about');
   if (specific.length) return specific[0].topic;
-  if (/\b(hi|hello|hey|quack)\b/.test(q)) return { text: 'Hello hello! ♡ I’m Dottie, Avneep’s little duck guide. Ask about his research, publications, projects, education, experience, skills, or achievements.' };
-  if (/\b(thanks|thank|bye)\b/.test(q)) return { text: 'Happy to help! A little quack for your day. ♡' };
-  if (/\b(duck|dottie)\b/.test(q)) return { text: 'I’m Dottie! I waddle around this corner and answer questions using Avneep’s CV and portfolio. ♡' };
-  if (/^(who is avneep( singh)?|tell me about avneep( singh)?|about avneep( singh)?|introduce avneep|summary|who is he)$/.test(q)) return find('about');
-  return { text: 'I don’t have that detail in Avneep’s CV or portfolio, so I wouldn’t want to guess! Try his research, publications, projects, education, skills, mentoring, certifications, test scores, languages, or community activities.', section: 'contact' };
+  if (/\b(hi|hello|hey|quack|honk|bonjour|salut)\b/.test(q)) return { text: 'Hello! I’m Dottie, your portfolio guide. Ask about Avneep’s research, publications, projects, education, experience, or skills.', textFr: 'Bonjour ! Je suis Dottie, votre guide du portfolio. Posez-moi vos questions sur la recherche, les publications, les projets, les études, le parcours ou les compétences d’Avneep.' };
+  if (/\b(thanks|thank|bye|merci|aurevoir)\b/.test(q)) return { text: 'Happy to help. Enjoy exploring the portfolio!', textFr: 'Avec plaisir. Bonne découverte du portfolio !' };
+  if (/\b(duck|goose|dottie|oie|canard|cane)\b/.test(q)) return { text: 'I’m Dottie the duck, your guide to Avneep’s CV and portfolio.', textFr: 'Je suis Dottie la cane, votre guide du CV et du portfolio d’Avneep.' };
+  if (/^(who is avneep( singh)?|tell me about avneep( singh)?|about avneep( singh)?|introduce avneep|summary|who is he|qui est avneep( singh)?|presente avneep)$/.test(q)) return find('about');
+  return { text: 'I don’t have that detail in Avneep’s CV or portfolio, so I wouldn’t want to guess! Try his research, publications, projects, education, skills, mentoring, certifications, test scores, languages, or community activities.', textFr: 'Ce détail ne figure pas dans le CV ni dans le portfolio d’Avneep. Je préfère ne pas deviner. Je peux vous renseigner sur ses recherches, manuscrits, projets, études, compétences, mentorat, certifications, résultats aux tests, langues ou activités communautaires.', section: 'contact' };
 }
 
 const duckCompanion = document.querySelector('.duck-companion');
@@ -109,19 +109,35 @@ if (duckCompanion) {
     if (open) input.focus({ preventScroll: true });
     else launcher.focus({ preventScroll: true });
   };
-  launcher.addEventListener('click', () => setChatOpen(panel.hidden));
+  launcher.addEventListener('click', () => {
+    setChatOpen(panel.hidden);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      launcher.querySelector('svg').animate([
+        { transform: 'translateY(0) rotate(0)' },
+        { transform: 'translateY(-9px) rotate(-5deg)', offset: .45 },
+        { transform: 'translateY(0) rotate(0)' }
+      ], { duration: 550, easing: 'ease-out' });
+    }
+  });
   duckCompanion.querySelector('.duck-close').addEventListener('click', () => setChatOpen(false));
   duckCompanion.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !panel.hidden) { event.stopPropagation(); setChatOpen(false); }
   });
-  function addMessage(text, isUser = false, section) {
+  function addMessage(text, isUser = false, section, textFr) {
     const message = document.createElement('p');
     message.className = `duck-message${isUser ? ' is-user' : ''}`;
-    message.textContent = text;
+    const content = document.createElement('span');
+    if (!isUser) {
+      content.dataset.messageEn = text;
+      content.dataset.messageFr = textFr || text;
+    }
+    content.textContent = !isUser && portfolioLanguage.current === 'fr' ? textFr || text : text;
+    message.append(content);
     if (section) {
       const link = document.createElement('a');
       link.href = `#${section}`;
-      link.textContent = `Visit ${section} ↗`;
+      link.dataset.sectionLink = section;
+      link.textContent = portfolioLanguage.sectionLink(section);
       link.addEventListener('click', () => {
         setChatOpen(false);
         const destination = document.getElementById(section);
@@ -140,7 +156,7 @@ if (duckCompanion) {
     if (!text) return;
     addMessage(text, true);
     const answer = answerPortfolioQuestion(text);
-    addMessage(answer.text, false, answer.section);
+    addMessage(answer.text, false, answer.section, answer.textFr);
     input.value = '';
   }
   duckCompanion.querySelector('form').addEventListener('submit', event => {
@@ -149,5 +165,42 @@ if (duckCompanion) {
   });
   duckCompanion.querySelectorAll('.duck-prompts button').forEach(button => {
     button.addEventListener('click', () => askDottie(button.textContent));
+  });
+}
+
+// A stable toggle keeps the full archive close by without a long wall of cards.
+const projectsToggle = document.querySelector('.projects-toggle');
+const moreProjects = document.querySelector('#more-projects');
+if (projectsToggle && moreProjects) {
+  let disclosureAnimation;
+  projectsToggle.addEventListener('click', () => {
+    const opening = projectsToggle.getAttribute('aria-expanded') !== 'true';
+    const currentHeight = moreProjects.getBoundingClientRect().height;
+    if (disclosureAnimation) disclosureAnimation.cancel();
+    projectsToggle.setAttribute('aria-expanded', String(opening));
+    projectsToggle.querySelector('.projects-toggle-label').textContent = portfolioLanguage.text(opening ? 'Fewer projects' : 'More projects');
+    projectsToggle.querySelector('.projects-toggle-count').textContent = opening ? '−7' : '+7';
+    moreProjects.hidden = false;
+    moreProjects.inert = !opening;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || !moreProjects.animate) {
+      moreProjects.hidden = !opening;
+      return;
+    }
+    disclosureAnimation = moreProjects.animate([
+      { height: `${currentHeight}px`, opacity: opening ? 0 : 1, overflow: 'clip' },
+      { height: opening ? `${moreProjects.scrollHeight}px` : '0px', opacity: opening ? 1 : 0, overflow: 'clip' }
+    ], { duration: opening ? 460 : 280, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+    if (opening) {
+      moreProjects.querySelectorAll('.project-card').forEach((card, index) => {
+        card.getAnimations().forEach(animation => animation.cancel());
+        card.animate([
+          { opacity: 0, transform: 'translateY(16px) scale(.97)' },
+          { opacity: 1, transform: 'translateY(-2px) scale(1.005)', offset: .8 },
+          { opacity: 1, transform: 'none' }
+        ], { duration: 420, delay: index * 45, fill: 'backwards', easing: 'ease-out' });
+      });
+    }
+    disclosureAnimation.onfinish = () => { moreProjects.hidden = !opening; };
   });
 }

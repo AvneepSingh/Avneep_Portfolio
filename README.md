@@ -24,3 +24,8 @@ For a root profile URL, make a repository called `YOUR-GITHUB-USERNAME.github.io
 
 ### Notes
 The website has not been published to your GitHub account automatically. Use the steps above to go live.
+
+### Languages and Dottie
+The header EN/FR control translates the portfolio and Dottie’s responses, and remembers the choice in local storage. Edit `translations.js` for site copy and `textFr`/keywords in `portfolio-data.js` for chat answers. `language.js` manages the switch.
+
+Dottie is a local yellow SVG duck with a sage bow tie. CSS animates her waddle, steps, blinking, wing flaps, and little heart; clicking gives a small bounce and opens the chat. Edit the illustration in `index.html` and its animation rules in `styles.css`. No build step or 3D libraries are required. Motion follows the visitor’s reduced-motion preference. No messages are stored or sent to a server.
